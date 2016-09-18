@@ -11,16 +11,4 @@
 项目配置错误，web Resource Directory配置错误。
 
 ##找不到layout.vm文件
-添加velocity.properties配置文件,修改file.resource.loader.class配置
-#velocimacro.library =/macros.vm
-input.encoding=UTF-8
-output.encoding=UTF-8
-#file.resource.loader.path = .
-
-resource.loader = file
-
-file.resource.loader.description = Velocity File Resource Loader
-file.resource.loader.class = org.apache.velocity.tools.view.WebappResourceLoader
-#file.resource.loader.path = .
-file.resource.loader.cache = false
-file.resource.loader.modificationCheckInterval = 2
+添加velocity.properties配置文件
