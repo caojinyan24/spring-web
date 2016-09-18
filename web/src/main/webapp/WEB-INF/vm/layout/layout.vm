@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+##    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+##    <meta http-equiv="X-UA-Compatible" content="edge">
+##    <link rel="shortcut icon" href="/image/icon.png" type="x-icon" />
+##    <link rel="stylesheet" href="http://#parse('fe-server.url')/survey/prd/styles/lib/common@#parse('ver/styles/lib/common.css.ver').css"/>
+##    #if("$!css" != "")
+##        <link rel="stylesheet" href="http://#parse('fe-server.url')/survey/prd/$!css">
+##    #end
+##
+##    <title>问卷系统</title>
+</head>
+<body>
+<div>
+##    #parse('common/survey_header.vm')
+</div>
+<div id="container">
+##    <div class="header">
+##        #parse('common/header.vm')
+##    </div>
+##    <div class="admin">
+##        <div class="admin-bar">
+##            #parse('common/menu.vm')
+##        </div>
+##        <div class="admin-content">
+##            $screen_content
+##        </div>
+##    </div>
+##    #parse('common/footer.vm')
+    <body>
+    <div id="header>#parse( 'common/header.vm' )</div>
+            <div id= "content" >
+    <div id= "sub" >#parse($sub)</div>
+    <div id= "main" >$screen_content</div>
+</div>
+<div id= "footer" >#parse( 'common/footer.vm' )</div>
+</body>
+</div>
+##    #if("$!mainjs" != "")
+##    <script src="http://#parse('fe-server.url')/survey/prd/scripts/$!mainjs"></script>
+##    #end
+##    #if("$!customjs" != "")
+##    <script src="http://#parse('fe-server.url')/survey/prd/scripts/$!customjs"></script>
+##    #end
+</body>
+</html>

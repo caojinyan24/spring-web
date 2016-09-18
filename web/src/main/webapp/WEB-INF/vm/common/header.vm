@@ -1,0 +1,9 @@
+<div class="hd-title">
+    <img src="/image/logo.png" alt="logo">
+</div>
+<ul class="user-menu">
+    <li class="usermsg">你好</li>
+    <!-- 这里需要后台数据填充 -->
+    <li class="cut">|</li>
+    <li class="logout"><a id="logout">退出系统</a></li>
+</ul>
