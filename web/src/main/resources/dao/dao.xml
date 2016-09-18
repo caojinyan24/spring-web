@@ -7,71 +7,71 @@
                 http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
                 http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
 
-    <!--<aop:aspectj-autoproxy />-->
-    <!--<context:property-placeholder location="classpath:db.properties"-->
-                                  <!--local-override="true" file-encoding="utf-8" ignore-unresolvable="true"-->
-                                  <!--ignore-resource-not-found="false" />-->
-    <!--<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"-->
-          <!--destroy-method="close">-->
-        <!--<property name="driverClassName" value="${user.driverClassName}" />-->
-        <!--<property name="url" value="${user.url}" />-->
-        <!--<property name="username" value="${user.username}" />-->
-        <!--<property name="password" value="${user.password}" />-->
-        <!--<property name="defaultAutoCommit" value="false"></property>-->
-        <!--<property name="maxActive">-->
-            <!--<value>100</value>-->
-        <!--</property>-->
-        <!--<property name="initialSize">-->
-            <!--<value>5</value>-->
-        <!--</property>-->
-        <!--<property name="maxWait">-->
-            <!--<value>30000</value>-->
-        <!--</property>-->
-        <!--&lt;!&ndash; 超时等待时间 以毫秒为单位 &ndash;&gt;-->
-        <!--<property name="maxIdle">-->
-            <!--<value>20</value>-->
-        <!--</property>-->
-        <!--&lt;!&ndash; 最大空闲连接 &ndash;&gt;-->
-        <!--<property name="minIdle">-->
-            <!--<value>5</value>-->
-        <!--</property>-->
-        <!--&lt;!&ndash; 最小空闲连接 &ndash;&gt;-->
-        <!--<property name="removeAbandoned">-->
-            <!--<value>true</value>-->
-        <!--</property>-->
-        <!--&lt;!&ndash; 是否自动回收超时连接 &ndash;&gt;-->
-        <!--<property name="removeAbandonedTimeout">-->
-            <!--<value>30</value>-->
-        <!--</property>-->
-        <!--&lt;!&ndash; 超时时间(以秒数为单位) &ndash;&gt;-->
-        <!--<property name="testWhileIdle">-->
-            <!--<value>true</value>-->
-        <!--</property>-->
-        <!--&lt;!&ndash; 打开检查,用异步线程evict进行检查 &ndash;&gt;-->
-        <!--<property name="testOnBorrow">-->
-            <!--<value>true</value>-->
-        <!--</property>-->
-        <!--<property name="testOnReturn">-->
-            <!--<value>false</value>-->
-        <!--</property>-->
-        <!--<property name="validationQuery">-->
-            <!--<value>select 1</value>-->
-        <!--</property>-->
-        <!--<property name="numTestsPerEvictionRun">-->
-            <!--<value>20</value>-->
-        <!--</property>-->
-        <!--<property name="minEvictableIdleTimeMillis">-->
-            <!--<value>1800000</value>-->
-        <!--</property>-->
-    <!--</bean>-->
-    <!--<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">-->
-        <!--<property name="dataSource" ref="dataSource" />-->
-    <!--</bean>-->
-    <!--<tx:annotation-driven transaction-manager="txManager" />-->
+    <aop:aspectj-autoproxy />
+    <context:property-placeholder location="classpath:db.properties"
+                                  local-override="true" file-encoding="utf-8" ignore-unresolvable="true"
+                                  ignore-resource-not-found="false" />
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+          destroy-method="close">
+        <property name="driverClassName" value="${user.driverClassName}" />
+        <property name="url" value="${user.url}" />
+        <property name="username" value="${user.username}" />
+        <property name="password" value="${user.password}" />
+        <property name="defaultAutoCommit" value="false"></property>
+        <property name="maxActive">
+            <value>100</value>
+        </property>
+        <property name="initialSize">
+            <value>5</value>
+        </property>
+        <property name="maxWait">
+            <value>30000</value>
+        </property>
+        <!-- 超时等待时间 以毫秒为单位 -->
+        <property name="maxIdle">
+            <value>20</value>
+        </property>
+        <!-- 最大空闲连接 -->
+        <property name="minIdle">
+            <value>5</value>
+        </property>
+        <!-- 最小空闲连接 -->
+        <property name="removeAbandoned">
+            <value>true</value>
+        </property>
+        <!-- 是否自动回收超时连接 -->
+        <property name="removeAbandonedTimeout">
+            <value>30</value>
+        </property>
+        <!-- 超时时间(以秒数为单位) -->
+        <property name="testWhileIdle">
+            <value>true</value>
+        </property>
+        <!-- 打开检查,用异步线程evict进行检查 -->
+        <property name="testOnBorrow">
+            <value>true</value>
+        </property>
+        <property name="testOnReturn">
+            <value>false</value>
+        </property>
+        <property name="validationQuery">
+            <value>select 1</value>
+        </property>
+        <property name="numTestsPerEvictionRun">
+            <value>20</value>
+        </property>
+        <property name="minEvictableIdleTimeMillis">
+            <value>1800000</value>
+        </property>
+    </bean>
+    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+    <tx:annotation-driven transaction-manager="txManager" />
 
-    <!--<context:property-placeholder location="classpath:db.properties"-->
-                                  <!--local-override="true" file-encoding="utf-8" ignore-unresolvable="true"-->
-                                  <!--ignore-resource-not-found="false" />-->
+    <context:property-placeholder location="classpath:db.properties"
+                                  local-override="true" file-encoding="utf-8" ignore-unresolvable="true"
+                                  ignore-resource-not-found="false" />
 
 
 

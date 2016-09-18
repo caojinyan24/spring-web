@@ -2,7 +2,7 @@ package manage.util;
 
 
 import com.google.common.base.Splitter;
-import manage.service.StudentManageService;
+import manage.service.UserManageService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -24,7 +24,7 @@ import java.util.List;
 public class ManagerJdkProxy implements InvocationHandler {
     private static final Logger logger = LoggerFactory.getLogger(ManagerJdkProxy.class);
     @Resource
-    StudentManageService studentManageService;
+    UserManageService UserManageService;
 
     @Value("${query}")
     String canQuery;
@@ -44,11 +44,11 @@ public class ManagerJdkProxy implements InvocationHandler {
      * @return
      */
     public Object createInstance(String managerName) {
-        studentManageService.setName(managerName);
-        ClassLoader classLoader = studentManageService.getClass().getClassLoader();
-        //StudentManage.class.getInterfaces()返回的是null，所以这里要么用impl，要么用实例对象获得接口方法数组
-        //Class<?>[] methods = StudentManageImpl.class.getInterfaces();
-        Class<?>[] methods = studentManageService.getClass().getInterfaces();
+        UserManageService.setUserName(managerName);
+        ClassLoader classLoader = UserManageService.getClass().getClassLoader();
+        //UserManage.class.getInterfaces()返回的是null，所以这里要么用impl，要么用实例对象获得接口方法数组
+        //Class<?>[] methods = UserManageImpl.class.getInterfaces();
+        Class<?>[] methods = UserManageService.getClass().getInterfaces();
         return Proxy.newProxyInstance(classLoader, methods, this);
 
 
@@ -57,19 +57,19 @@ public class ManagerJdkProxy implements InvocationHandler {
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
 
         if (canQuery()) {
-            return studentManageService.queryStudentInfo();
+            return UserManageService.queryUserInfo();
         } else {
-            logger.error("{} deny query",studentManageService.getName());
+            logger.error("{} deny query", UserManageService.getUserName());
             return null;
         }
     }
 
     public boolean canQuery() {
-        return canQueryList.contains(studentManageService.getName());
+        return canQueryList.contains(UserManageService.getUserName());
     }
 
     public boolean canUpdate() {
-        return canUpdateList.contains(studentManageService.getName());
+        return canUpdateList.contains(UserManageService.getUserName());
 
     }
 

@@ -1,6 +1,6 @@
 package manage.controller;
 
-import manage.entity.StudentInfo;
+import manage.entity.UserInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 @Controller
 @RequestMapping(value = "manage")
-public class StudentManageController {
-    private static final Logger logger = LoggerFactory.getLogger(StudentManageController.class);
+public class UserManageController {
+    private static final Logger logger = LoggerFactory.getLogger(UserManageController.class);
 
     @RequestMapping("/home")
     public String home() {
@@ -28,7 +28,7 @@ public class StudentManageController {
     }
 
     @RequestMapping("/query")
-    public StudentInfo query() {
-        return new StudentInfo();
+    public UserInfo query() {
+        return new UserInfo();
     }
 }
