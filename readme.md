@@ -1,5 +1,4 @@
-1. 把web页面跑起来
-遇到的问题
+#遇到的问题(项目初始化)
 ##tomcat启动报错：java.lang.ClassNotFoundException: org.springframework.web.context.ContextLoaderListener
 * 添加pom依赖包（无效）
 * 升级pom依赖包版本（无效）
