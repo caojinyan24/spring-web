@@ -2,7 +2,7 @@
 <mapper namespace="manage.dao.UserInfoMapper">
     <select id="queryUserInfo" resultType="manage.entity.UserInfo">
         select user_id as userId,user_name as userName,create_time as createTime,update_time as updateTime
-        from user_info;
+        from user_info
     </select>
     <update id="updateUserInfo" parameterType="manage.entity.UserInfo">
         update user_info set user_name=#{userName} where user_id=#{userId}

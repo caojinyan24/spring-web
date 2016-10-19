@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+
 /**
  * Created by jinyancao on 2016/04/26/20/05
  */
@@ -18,8 +19,6 @@ public class UserManageController {
     @RequestMapping("/home")
     public String home() {
         return "homePage";//返回vm名称
-
-
     }
 
     @RequestMapping("/login")
@@ -31,4 +30,6 @@ public class UserManageController {
     public UserInfo query() {
         return new UserInfo();
     }
+
+
 }
