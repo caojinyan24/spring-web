@@ -8,6 +8,7 @@
     <artifactId>spring-web</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <name>spring-web</name>
     <modules>
         <module>web</module>
         <module>core</module>
@@ -241,14 +242,14 @@
                 <version>1.7</version>
             </dependency>
             <dependency>
-                <groupId>spring-web</groupId>
-                <artifactId>core</artifactId>
-                <version>1.0-SNAPSHOT</version>
-            </dependency>
-            <dependency>
                 <groupId>commons-dbcp</groupId>
                 <artifactId>commons-dbcp</artifactId>
                 <version>1.4</version>
+            </dependency>
+            <dependency>
+                <groupId>spring-web</groupId>
+                <artifactId>core</artifactId>
+                <version>1.0-SNAPSHOT</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

@@ -8,7 +8,11 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
+    <groupId>spring-web</groupId>
     <artifactId>web</artifactId>
+    <packaging>war</packaging>
+    <name>web</name>
+    <url>http://maven.apache.org</url>
 
     <dependencies>
         <dependency>
@@ -179,10 +183,6 @@
             <artifactId>velocity</artifactId>
         </dependency>
         <dependency>
-            <groupId>spring-web</groupId>
-            <artifactId>core</artifactId>
-        </dependency>
-        <dependency>
             <groupId>commons-dbcp</groupId>
             <artifactId>commons-dbcp</artifactId>
         </dependency>
@@ -193,6 +193,10 @@
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>spring-web</groupId>
+            <artifactId>core</artifactId>
         </dependency>
     </dependencies>
 </project>

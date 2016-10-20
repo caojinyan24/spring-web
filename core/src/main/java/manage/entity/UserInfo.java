@@ -10,6 +10,11 @@ public class UserInfo implements Serializable {
     String userId;
     String userName;
 
+    public UserInfo(String userId, String userName) {
+        this.userId = userId;
+        this.userName = userName;
+    }
+
     public String getUserId() {
         return userId;
     }

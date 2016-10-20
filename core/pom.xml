@@ -8,8 +8,10 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-
+    <groupId>spring-web</groupId>
     <artifactId>core</artifactId>
+    <name>ious-core</name>
+    <url>http://maven.apache.org</url>
 
     <dependencies>
         <dependency>
@@ -184,10 +186,6 @@
         <dependency>
             <groupId>org.apache.velocity</groupId>
             <artifactId>velocity</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>spring-web</groupId>
-            <artifactId>core</artifactId>
         </dependency>
         <dependency>
             <groupId>org.mybatis</groupId>

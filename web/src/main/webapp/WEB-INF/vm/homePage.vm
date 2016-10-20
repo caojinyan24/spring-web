@@ -1,5 +1,12 @@
 #set($layout='layout/layout.vm')
 <div class="=content-data">
+    <html>
+    <body>
+    Hello
+    <a href="/manage/login">login</a>
+
+    </body>
+    </html>
 
 </div>
 

@@ -1,4 +1,15 @@
 #set($layout='layout/layout.vm')
 <div class="=content-data">
-
+    <html>
+    <body>
+        #set ( $name = "dear" )
+    Hello $name!
+    <form method="post" action="/manage/query">
+        <input name="userName">
+    </form>
+    <form method="post" action="/manage/update">
+        <input value="update" type="submit" >
+    </form>
+    </body>
+    </html>
 </div>
