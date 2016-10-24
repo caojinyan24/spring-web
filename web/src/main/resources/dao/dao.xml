@@ -8,16 +8,17 @@
                 http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
 
     <context:component-scan base-package="manage.dao"/>
-    <aop:aspectj-autoproxy />
+    <context:property-placeholder location="classpath*:db.properties"/>
+    <aop:aspectj-autoproxy/>
     <context:property-placeholder location="classpath:db.properties"
                                   local-override="true" file-encoding="utf-8" ignore-unresolvable="true"
-                                  ignore-resource-not-found="false" />
+                                  ignore-resource-not-found="false"/>
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
           destroy-method="close">
-        <property name="driverClassName" value="${user.driverClassName}" />
-        <property name="url" value="${user.url}" />
-        <property name="username" value="${user.username}" />
-        <property name="password" value="${user.password}" />
+        <property name="driverClassName" value="${user.driverClassName}"/>
+        <property name="url" value="${user.url}"/>
+        <property name="username" value="${user.username}"/>
+        <property name="password" value="${user.password}"/>
         <property name="defaultAutoCommit" value="false"></property>
         <property name="maxActive">
             <value>100</value>
@@ -66,22 +67,20 @@
         </property>
     </bean>
     <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="dataSource" />
+        <property name="dataSource" ref="dataSource"/>
     </bean>
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="mapperLocations" value="classpath*:mapper/*"/>
         <property name="dataSource" ref="dataSource"/>
     </bean>
-    <!--<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" scope="prototype">-->
-        <!--<constructor-arg index="0" ref="sqlSessionFactoryBean"/>-->
-    <!--</bean>-->
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" scope="prototype">
+        <constructor-arg index="0" ref="sqlSessionFactory"/>
+    </bean>
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
         <property name="basePackage" value="manage.dao"/>
     </bean>
-    <tx:annotation-driven transaction-manager="txManager" />
-
-
+    <tx:annotation-driven transaction-manager="txManager"/>
 
 
 </beans>

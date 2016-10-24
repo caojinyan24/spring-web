@@ -4,11 +4,14 @@
     <body>
         #set ( $name = "dear" )
     Hello $name!
+
     <form method="post" action="/manage/query">
-        <input name="userName">
-    </form>
-    <form method="post" action="/manage/update">
-        <input value="update" type="submit" >
+        <input value="query" type="submit">
+        <ul>
+            #foreach($userInfo in $userInfos)
+                <li>$userInfo.userId:$userInfo.userName</li>
+            #end
+        </ul>
     </form>
     </body>
     </html>

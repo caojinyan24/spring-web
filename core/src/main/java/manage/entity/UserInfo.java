@@ -7,19 +7,19 @@ import java.io.Serializable;
  */
 public class UserInfo implements Serializable {
     private static final long serialVersionUID = 4091651295331185057L;
-    String userId;
+    Long userId;
     String userName;
 
-    public UserInfo(String userId, String userName) {
+    public UserInfo(Long userId, String userName) {
         this.userId = userId;
         this.userName = userName;
     }
 
-    public String getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
@@ -34,7 +34,7 @@ public class UserInfo implements Serializable {
     @Override
     public String toString() {
         return "UserInfo{" +
-                "userId='" + userId + '\'' +
+                "userId=" + userId +
                 ", userName='" + userName + '\'' +
                 '}';
     }

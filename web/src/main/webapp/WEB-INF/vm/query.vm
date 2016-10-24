@@ -1,0 +1,22 @@
+#set($layout='layout/layout.vm')
+<div class="=content-data">
+    <html>
+    <body>
+        #set ( $name = "dear" )
+    Hello $name
+    <ul>
+        #foreach($userInfo in $userInfos)
+            <li>$userInfo.userId:$userInfo.userName
+                <form method="post" action="/manage/update">
+                    <input name="userName">
+                    <input name="userId" type="hidden" value="${userInfo.userId}">
+                    <input value="update" type="submit">
+                </form>
+            </li>
+
+        #end
+    </ul>
+
+    </body>
+    </html>
+</div>
