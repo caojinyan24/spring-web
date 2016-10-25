@@ -21,12 +21,10 @@ public class UserManageServiceImpl implements UserManageService {
     String userName;
 
     public List<UserInfo> queryUserInfo() {
-        logger.info("querying");
         return userInfoMapper.queryUserInfo();
     }
 
     public void updateUserInfo(UserInfo userInfo) {
-        logger.info("updating");
         userInfoMapper.updateUserInfo(userInfo);
     }
 

@@ -11,3 +11,9 @@
 
 ##找不到layout.vm文件
 添加velocity.properties配置文件
+
+##添加logback.xml后报错：Caused by: org.xml.sax.SAXParseException; lineNumber: 3; columnNumber: 16; Document root element "configuration", must match DOCTYPE root "null".
+把logback.xml文件加入了global-config.xml文件，导致在加载的时候按照一定类型加载时文件格式不对；把配置去掉即可。
+
+##设置的切面不起作用
+没扫包

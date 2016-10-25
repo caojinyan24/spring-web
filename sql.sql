@@ -6,5 +6,5 @@ create table user_info (
   `create_time` timestamp NOT NULL DEFAULT current_timestamp COMMENT '创建时间',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   key `idx_user_name`(`user_name`),
-  key `idx_user_id`(`user_id`)
+  UNIQUE key `idx_user_id`(`user_id`)
 )engine=InnoDB default charset=utf8 comment '用户信息表';

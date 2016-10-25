@@ -1,16 +1,10 @@
 package manage.controller;
 
-import com.google.common.collect.Lists;
-import com.google.gson.annotations.SerializedName;
 import manage.entity.UserInfo;
 import manage.service.UserManageService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.view.RedirectView;
@@ -25,7 +19,6 @@ import java.util.List;
 @Controller
 @RequestMapping(value = "manage")
 public class UserManageController {
-    private static final Logger logger = LoggerFactory.getLogger(UserManageController.class);
     @Resource
     private UserManageService userManageService;
 
@@ -36,7 +29,6 @@ public class UserManageController {
 
     @RequestMapping("/login")
     public String login() {
-        logger.info("login");
         return "login";
     }
 
@@ -52,7 +44,7 @@ public class UserManageController {
     public ModelAndView update(@RequestParam("userName") String userName, @RequestParam("userId") Long userId) {
         ModelAndView modelAndView = new ModelAndView();
         userManageService.updateUserInfo(new UserInfo(userId, userName));
-       View view= new RedirectView("/manage/query");
+        View view = new RedirectView("/manage/query");
         modelAndView.setView(view);
         return modelAndView;
 
