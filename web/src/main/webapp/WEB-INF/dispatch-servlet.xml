@@ -9,6 +9,11 @@
 
     <context:component-scan base-package="manage.controller"/>
     <mvc:annotation-driven/>
+    <context:property-placeholder location="classpath*:*.properties" ignore-unresolvable="true"/>
+    <mvc:interceptors>
+        <bean id="previlegeControl" class="manage.utils.PrevilegeControl">
+        </bean>
+    </mvc:interceptors>
 
     <bean id="velocityConfigurer" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
         <property name="resourceLoaderPath">

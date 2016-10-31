@@ -3,8 +3,11 @@
     <html>
     <body>
     Hello
-    <a href="/manage/login">login</a>
-
+    <form id="login" action="/manage/login">
+        userName:<input name="userName">
+        password:<input name="password">
+        <input value="login" type="submit">
+    </form>
     </body>
     </html>
 

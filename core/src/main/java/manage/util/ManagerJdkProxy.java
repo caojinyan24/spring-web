@@ -43,8 +43,7 @@ public class ManagerJdkProxy implements InvocationHandler {
     /**
      * @return
      */
-    public Object createInstance(String managerName) {
-        UserManageService.setUserName(managerName);
+    public Object createInstance() {
         ClassLoader classLoader = UserManageService.getClass().getClassLoader();
         //UserManage.class.getInterfaces()返回的是null，所以这里要么用impl，要么用实例对象获得接口方法数组
         //Class<?>[] methods = UserManageImpl.class.getInterfaces();
@@ -56,20 +55,19 @@ public class ManagerJdkProxy implements InvocationHandler {
 
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
 
-        if (canQuery()) {
+        if (canQuery("abc")) {
             return UserManageService.queryUserInfo();
         } else {
-            logger.error("{} deny query", UserManageService.getUserName());
             return null;
         }
     }
 
-    public boolean canQuery() {
-        return canQueryList.contains(UserManageService.getUserName());
+    public boolean canQuery(String userName) {
+        return canQueryList.contains(userName);
     }
 
-    public boolean canUpdate() {
-        return canUpdateList.contains(UserManageService.getUserName());
+    public boolean canUpdate(String userName) {
+        return canUpdateList.contains(userName);
 
     }
 

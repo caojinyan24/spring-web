@@ -7,6 +7,7 @@
 
 
     <context:annotation-config/>
+    <context:property-placeholder location="classpath*:*.properties" ignore-unresolvable="true"/>
     <import resource="classpath:dao/dao.xml"/>
     <import resource="classpath:service/service.xml"/>
 

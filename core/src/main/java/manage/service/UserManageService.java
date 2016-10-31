@@ -11,11 +11,9 @@ import java.util.List;
 public interface UserManageService {
     List<UserInfo> queryUserInfo();
 
-    public void updateUserInfo(UserInfo userInfo);
+    void updateUserInfo(UserInfo userInfo);
 
-    public String getUserName();
 
-    public void setUserName(String userName);
 
 
 }

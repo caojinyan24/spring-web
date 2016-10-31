@@ -17,3 +17,6 @@
 
 ##设置的切面不起作用
 没扫包
+
+##权限控制的preHandle不起效
+需要把配置放在dispatch-servlet中进行配置
