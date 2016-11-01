@@ -23,3 +23,9 @@
 
 ##获取帐号登陆信息
 在登陆的时候保存帐号信息到cookie中，每次在获取页面请求的时候，先从cookie中取帐号信息进行校验，校验通过请求url
+
+##redis使用
+1. 安装redis
+2. 代码引入redis api包，设置redispool
+3. 注意：key不能是null
+4. 程序运行前，需要先启动RedisServer

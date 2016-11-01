@@ -20,7 +20,7 @@ public class LogAspact {
     public void logBefore(JoinPoint joinPoint) {
         String className = joinPoint.getTarget().getClass().getName();
         String methodName = joinPoint.getSignature().getName();
-        Object[] object =  joinPoint.getArgs();
+        Object[] object = joinPoint.getArgs();
         logger.info("class:{}#method:{} begin#param:{}", className, methodName, object);
     }
 

@@ -9,7 +9,7 @@
     <!-- 文件输出日志 (文件大小策略进行文件输出，超过指定大小对文件备份)-->
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <File>/home/jinyancao/project/github/spring-web/logs/manage.log</File>
-       <!--<File>./logs/manage.log</File>-->
+        <!--<File>./logs/manage.log</File>-->
         <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
             <FileNamePattern>manage.log.%i.bak</FileNamePattern>
             <MinIndex>1</MinIndex>
@@ -29,7 +29,7 @@
         <appender-ref ref="FILE"/>
     </logger>
     <root level="debug">
-        <appender-ref  ref="STDOUT"/>
+        <appender-ref ref="STDOUT"/>
         <appender-ref ref="FILE"/>
     </root>
 </configuration>

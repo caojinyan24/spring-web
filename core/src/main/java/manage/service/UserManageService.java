@@ -14,6 +14,4 @@ public interface UserManageService {
     void updateUserInfo(UserInfo userInfo);
 
 
-
-
 }

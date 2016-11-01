@@ -9,5 +9,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface SessionMapper {
     String queryUserNameBySession(String session);
-    void saveSession(@Param("session")String session,@Param("userName")String userName);
+
+    void saveSession(@Param("session") String session, @Param("userName") String userName);
 }

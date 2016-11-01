@@ -16,8 +16,8 @@ public class SessionServiceImpl implements SessionService {
     private SessionMapper sessionMapper;
 
     public void saveSession(String session, String userName) {
-        if(StringUtils.isEmpty(sessionMapper.queryUserNameBySession(session))){
-            sessionMapper.saveSession(session,userName);
+        if (StringUtils.isEmpty(sessionMapper.queryUserNameBySession(session))) {
+            sessionMapper.saveSession(session, userName);
         }
     }
 

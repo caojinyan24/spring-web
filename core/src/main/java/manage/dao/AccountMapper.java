@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface AccountMapper {
-    public Integer queryAccountCount(@Param("userName") String userName,@Param("password")String password);
+    Integer queryAccountCount(@Param("userName") String userName, @Param("password") String password);
 }

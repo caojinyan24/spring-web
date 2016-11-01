@@ -11,5 +11,6 @@ import java.util.List;
 @Repository
 public interface UserInfoMapper {
     List<UserInfo> queryUserInfo();
+
     Integer updateUserInfo(UserInfo userInfo);
 }
