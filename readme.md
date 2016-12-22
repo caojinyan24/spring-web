@@ -1,3 +1,4 @@
+[TOC]
 #遇到的问题(项目初始化)
 ##tomcat启动报错：java.lang.ClassNotFoundException: org.springframework.web.context.ContextLoaderListener
 * 添加pom依赖包（无效）
@@ -29,3 +30,5 @@
 2. 代码引入redis api包，设置redispool
 3. 注意：key不能是null
 4. 程序运行前，需要先启动RedisServer
+   % cd src
+   % ./redis-server
