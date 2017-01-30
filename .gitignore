@@ -1,0 +1,8 @@
+
+.gitignore
+.idea/
+*/*.iml
+*/target/
+out/
+/spring-web.iml
+/core/core.iml
