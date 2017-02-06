@@ -4,3 +4,7 @@
 out/
 /spring-web.iml
 /core/core.iml
+/.idea/
+/core/src/main/main.iml
+/web/src/main/main1.iml
+/logs/
