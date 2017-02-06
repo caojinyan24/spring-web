@@ -1,7 +1,6 @@
-
-/core/core.iml
-/web/web.iml
+.idea/
+*/*.iml
+*/target/
+out/
 /spring-web.iml
-/web/target/
-/logs/
-/core/target/
+/core/core.iml
