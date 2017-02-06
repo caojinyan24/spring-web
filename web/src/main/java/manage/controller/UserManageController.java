@@ -77,7 +77,7 @@ public class UserManageController {
         profiler.registerWith(profilerRegistry);
         profiler.start("query");
         ModelAndView modelAndView = new ModelAndView("query");
-        List<UserInfo> userInfos = userManageService.queryUserInfo(data);
+        List<UserInfo> userInfos = userManageService.queryUserInfo();
         modelAndView.addObject("userInfos", userInfos);
         EventLogger.logEvent(data);
         profiler.stop().print();

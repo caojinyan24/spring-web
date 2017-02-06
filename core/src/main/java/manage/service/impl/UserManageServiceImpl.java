@@ -3,12 +3,11 @@ package manage.service.impl;
 
 import manage.dao.UserInfoMapper;
 import manage.entity.UserInfo;
+import manage.processor.Processor;
 import manage.service.UserManageService;
-import org.slf4j.ext.EventData;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,8 +18,10 @@ public class UserManageServiceImpl implements UserManageService {
     @Resource
     private UserInfoMapper userInfoMapper;
 
-    public List<UserInfo> queryUserInfo(EventData data) {
-        data.put("queryUserInfo","abc");
+    public List<UserInfo> queryUserInfo() {
+        if (null != Processor.getCachedMap().get("queryUserInfo1")) {
+            return (List<UserInfo>) Processor.getCachedMap().get("queryUserInfo1");
+        }
         return userInfoMapper.queryUserInfo();
     }
 

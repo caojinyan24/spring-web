@@ -27,19 +27,30 @@
             <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</Pattern>
         </layout>
     </appender>
+    <!-- 文件输出日志 (文件大小策略进行文件输出，超过指定大小对文件备份)-->
+    <appender name="FILE1" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>/home/jinyancao/project/github/spring-web/logs/manageSys.log</File>
+        <!--<File>./logs/manage.log</File>-->
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <FileNamePattern>manage.log.%i.bak</FileNamePattern>
+            <MinIndex>1</MinIndex>
+            <MaxIndex>12</MaxIndex>
+        </rollingPolicy>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <MaxFileSize>100MB</MaxFileSize>
+        </triggeringPolicy>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</Pattern>
+        </layout>
+    </appender>
     <logger name="EventLogger">
-        <level value="INFO"/>
-        <appender-ref ref="FILE"/>
-        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="FILE1" level="INFO"/>
     </logger>
     <!--这里指定logger name 是为jmx设置日志级别做铺垫 -->
-    <logger name="manage.*">
-        <level value="debug"/>
-        <appender-ref ref="STDOUT"/>
-        <appender-ref ref="FILE"/>
+    <logger name="manage.log.LogAspact" >
+        <appender-ref ref="FILE" level="DEBUG"/>
     </logger>
-    <root level="debug">
-        <appender-ref ref="STDOUT"/>
-        <appender-ref ref="FILE"/>
+    <root>
+        <appender-ref ref="STDOUT" level="INFO"/>
     </root>
 </configuration>

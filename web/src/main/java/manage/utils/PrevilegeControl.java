@@ -17,12 +17,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
- * 权限控制
+ * 权限控制，通过redis记录登陆用户状态
  * Created by jinyancao on 10/25/16.
  */
 @Component
 public class PrevilegeControl extends HandlerInterceptorAdapter {
-    private static final Logger logger = LoggerFactory.getLogger(PrevilegeControl.class);
     @Value("${query}")
     String canQuery;
     @Value("${update}")
@@ -38,7 +37,6 @@ public class PrevilegeControl extends HandlerInterceptorAdapter {
 
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
-        logger.info("-------------preHandle-----------");
         if (request.getRequestURI().endsWith("login") || request.getRequestURI().endsWith("home")) {
             return true;
         }
@@ -53,8 +51,6 @@ public class PrevilegeControl extends HandlerInterceptorAdapter {
             response.sendRedirect("/manage/login");
         }
         String userName = redisService.get(sessionId);
-        logger.info("-----preHandle:userName:{}-----", userName);
-
         return !StringUtils.isEmpty(userName) && canQueryList.contains(String.valueOf(userName));
     }
 }

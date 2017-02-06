@@ -1,5 +1,4 @@
 [TOC]
-#遇到的问题(项目初始化)
 ##tomcat启动报错：java.lang.ClassNotFoundException: org.springframework.web.context.ContextLoaderListener
 * 添加pom依赖包（无效）
 * 升级pom依赖包版本（无效）
@@ -32,3 +31,12 @@
 4. 程序运行前，需要先启动RedisServer
    % cd src
    % ./redis-server
+
+##添加EventData和Profiler
+EventDate：以xml格式输出日志信息
+Profiler：打印系统调用日志(可打印多级调用信息)
+
+##添加自定义注解Cach，把数据库查询结果缓存到Map中
+为获取方法返回结果，通过切面的方式实现注解处理器
+对同一个方法使用AfterReturning切面注解，会导致其中一个注解不起作用
+todo:使用实体包装Map中的value，保存添加时间，实现缓存的时间设置
