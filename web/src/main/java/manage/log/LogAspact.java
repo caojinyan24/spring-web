@@ -1,6 +1,7 @@
 package manage.log;
 
 import manage.anotation.Cach;
+import manage.processor.CachEntity;
 import manage.processor.Processor;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Method;
 import java.util.Arrays;
+import java.util.Date;
 
 /**
  * Created by jinyancao on 10/24/16.
@@ -35,13 +37,16 @@ public class LogAspact {
         String className = joinPoint.getTarget().getClass().getName();
         String methodName = joinPoint.getSignature().getName();
         logger.info("class:{}#method:{} end#response:{}", className, methodName, result);
+
+        //添加缓存
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         Method method = signature.getMethod();
-        if (method.isAnnotationPresent(Cach.class)) {
+        Cach cach = method.getAnnotation(Cach.class);
+        if (cach != null) {
             String key = method.getName() + Arrays.hashCode(joinPoint.getArgs());
             Object value = Processor.getCachedMap().get(key);
             if (value == null) {
-                Processor.getCachedMap().put(key, result);
+                Processor.getCachedMap().put(key, new CachEntity(result, new Date().getTime(), cach.expiredTime()));
             }
         }
     }

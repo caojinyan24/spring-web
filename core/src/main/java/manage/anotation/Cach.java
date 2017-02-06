@@ -12,4 +12,8 @@ import java.lang.annotation.Target;
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Cach {
+    /**
+     * 过期时间
+     */
+    long expiredTime() default 0L;
 }

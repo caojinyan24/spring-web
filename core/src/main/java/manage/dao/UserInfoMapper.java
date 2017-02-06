@@ -11,7 +11,7 @@ import java.util.List;
  */
 @Repository
 public interface UserInfoMapper {
-    @Cach
+    @Cach(expiredTime = 1000L)
     List<UserInfo> queryUserInfo();
 
     Integer updateUserInfo(UserInfo userInfo);

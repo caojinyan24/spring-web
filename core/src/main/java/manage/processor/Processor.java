@@ -13,13 +13,13 @@ public class Processor {
     /**
      * 持久层查询结果保存容器
      */
-    public static Map<String, Object> cachedMap = new ConcurrentHashMap<String, Object>();
+    public static Map<String, CachEntity> cachedMap = new ConcurrentHashMap<String, CachEntity>();
 
-    public static Map<String, Object> getCachedMap() {
+    public static Map<String, CachEntity> getCachedMap() {
         return cachedMap;
     }
 
-    public static void setCachedMap(Map<String, Object> cachedMap) {
+    public static void setCachedMap(Map<String, CachEntity> cachedMap) {
         Processor.cachedMap = cachedMap;
     }
 }
