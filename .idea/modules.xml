@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/core/src/main/core.iml" filepath="$PROJECT_DIR$/core/src/main/core.iml" />
-      <module fileurl="file://$PROJECT_DIR$/web/src/main/web.iml" filepath="$PROJECT_DIR$/web/src/main/web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/core/core.iml" filepath="$PROJECT_DIR$/core/core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-web.iml" filepath="$PROJECT_DIR$/spring-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/web/web.iml" filepath="$PROJECT_DIR$/web/web.iml" />
     </modules>
   </component>
 </project>
