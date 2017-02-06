@@ -1,0 +1,8 @@
+
+/.idea/
+/core/core.iml
+/web/web.iml
+/spring-web.iml
+/web/target/
+/logs/
+/core/target/
