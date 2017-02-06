@@ -8,3 +8,5 @@ out/
 /core/src/main/main.iml
 /web/src/main/main1.iml
 /logs/
+/web/src/main/web.iml
+/core/src/main/core.iml
