@@ -48,7 +48,9 @@ public class UserManageServiceImpl implements UserManageService {
 
     //通过jdk动态代理实现缓存的注解处理器
     public List<UserInfo> queryUserInfoJ() {
-        ProxyJdk proxyJdk = new ProxyJdk();
+        ProxyJdk proxyJdk = new ProxyJdk();//todo:可以新加一个service层，屏蔽ProxyJdk的调用。
+        //spring生成的bean是代理对象（若设置了相关注解，也会把注解对应的处理器代码织入进去）
+        //spring实现缓存注解的原理：在生成bean实例时，根据缓存注解，对方法进行代理，生成的bean是代理过的对象实例
         UserInfoService userInfoService = (UserInfoService) proxyJdk.createInstance(beanFactory.getBean(UserInfoService.class));
         //beanFactory.getBean(UserInfoServiceImpl.class)会报找不到bean
         return userInfoService.queryUserInfo();

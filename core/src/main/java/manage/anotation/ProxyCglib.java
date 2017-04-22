@@ -31,7 +31,7 @@ public class ProxyCglib implements MethodInterceptor {
             logger.info("get data from cachMap");
             return Processor.getCachedMap().get(method.getName());
         } else {
-            Object result = methodProxy.invokeSuper(o, objects);
+            Object result = methodProxy.invokeSuper(o, objects);//不能传入spring的bean实例，会出现ClassCastException
             Processor.getCachedMap().put(method.getName(), new CachEntity(result, 1000L, 1000L));
             return result;
         }
