@@ -37,17 +37,5 @@ public class LogAspact {
         String className = joinPoint.getTarget().getClass().getName();
         String methodName = joinPoint.getSignature().getName();
         logger.info("class:{}#method:{} end#response:{}", className, methodName, result);
-
-        //添加缓存
-        MethodSignature signature = (MethodSignature) joinPoint.getSignature();
-        Method method = signature.getMethod();
-        Cach cach = method.getAnnotation(Cach.class);
-        if (cach != null) {
-            String key = method.getName() + Arrays.hashCode(joinPoint.getArgs());
-            Object value = Processor.getCachedMap().get(key);
-            if (value == null) {
-                Processor.getCachedMap().put(key, new CachEntity(result, new Date().getTime(), cach.expiredTime()));
-            }
-        }
     }
 }

@@ -1,7 +1,9 @@
 package manage.processor;
 
+import com.google.common.collect.Maps;
 import org.springframework.stereotype.Component;
 
+import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -16,10 +18,21 @@ public class Processor {
     public static Map<String, CachEntity> cachedMap = new ConcurrentHashMap<String, CachEntity>();
 
     public static Map<String, CachEntity> getCachedMap() {
+        removeInvalidCach();
         return cachedMap;
+
     }
 
     public static void setCachedMap(Map<String, CachEntity> cachedMap) {
         Processor.cachedMap = cachedMap;
+    }
+
+    private static void removeInvalidCach() {
+        for (Map.Entry<String, CachEntity> iterator : cachedMap.entrySet()) {
+            if (iterator.getValue().isInvalid()) {
+                cachedMap.entrySet().remove(iterator);
+            }
+
+        }
     }
 }

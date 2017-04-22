@@ -1,5 +1,6 @@
 package manage.anotation;
 
+import manage.processor.CachEntity;
 import manage.processor.Processor;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -21,17 +22,21 @@ import java.util.Arrays;
 public class AnnotationProcessor {
     private static Logger logger = LoggerFactory.getLogger(AnnotationProcessor.class);
 
+    //这种处理方式需要调用者去判断是否能从缓存中取到结果
+    //怎么实现对方法做代理，由缓存的注解处理器来对方法进行调用？
     @AfterReturning(returning = "result", pointcut = "execution(* manage.dao.*(..))")
     public void processCachableAnnotation(JoinPoint joinPoint, Object result) {
-//        MethodSignature signature = (MethodSignature) joinPoint.getSignature();
-//        Method method = signature.getMethod();
-//        logger.debug("processCachableAnnotation:{}", joinPoint, result);
-//        if (method.isAnnotationPresent(Cach.class)) {
-//            String key = method.getName() + Arrays.hashCode(joinPoint.getArgs());
-//            Object value = Processor.getCachedMap().get(key);
-//            if (value == null) {
-//                Processor.getCachedMap().put(key, result);
-//            }
-//        }
+        MethodSignature signature = (MethodSignature) joinPoint.getSignature();
+        Method method = signature.getMethod();
+        logger.debug("processCachableAnnotation:{}", joinPoint, result);
+        if (method.isAnnotationPresent(Cach.class)) {
+            String key = method.getName() + Arrays.hashCode(joinPoint.getArgs());
+            Object value = Processor.getCachedMap().get(key);
+            if (value == null) {
+                Processor.getCachedMap().put(key, new CachEntity(result, 1000L, 1000L));
+            }
+        }
     }
+
+
 }

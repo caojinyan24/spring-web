@@ -36,6 +36,11 @@
 EventDate：以xml格式输出日志信息
 Profiler：打印系统调用日志(可打印多级调用信息)
 
+##通过jdk动态代理实现注解处理器
+createInstance的时候，报错：Method threw 'java.lang.NullPointerException' exception. Cannot evaluate com.sun.proxy.$Proxy29.toString()
+https://docs.oracle.com/javase/7/docs/api/java/lang/reflect/Proxy.html
+如果数组参数的接口或它的任何元素是null时，报空指针错误
+
 ##添加自定义注解Cach，把数据库查询结果缓存到Map中
 为获取方法返回结果，通过切面的方式实现注解处理器
 对同一个方法使用AfterReturning切面注解，会导致其中一个注解不起作用

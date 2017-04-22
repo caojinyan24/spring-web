@@ -18,6 +18,10 @@ public class CachEntity {
      */
     Long expiredTime;
 
+    public boolean isInvalid() {
+        return System.currentTimeMillis() < timestamp + expiredTime;
+    }
+
     public CachEntity() {
     }
 
