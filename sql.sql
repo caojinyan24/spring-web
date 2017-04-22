@@ -47,3 +47,16 @@ CREATE TABLE `session` (
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8
   COMMENT = '会话信息表';
+
+#添加测试数据
+#account表保存用户登录信息
+INSERT INTO `user`.`user_info` (`user_id`, `user_name`, `create_time`, `update_time`)
+VALUES ('1', 'user1', now(), now());
+INSERT INTO `user`.`user_info` (`user_id`, `user_name`, `create_time`, `update_time`)
+VALUES ('2', 'user2', now(), now());
+INSERT INTO `user`.`user_info` (`user_id`, `user_name`, `create_time`, `update_time`)
+VALUES ('3', 'user3', now(), now());
+INSERT INTO `user`.`user_info` (`user_id`, `user_name`, `create_time`, `update_time`)
+VALUES ('4', 'user4', now(), now());
+INSERT INTO `user`.`user_info` (`user_id`, `user_name`, `create_time`, `update_time`)
+VALUES ('5', 'user5', now(), now());
