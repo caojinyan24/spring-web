@@ -50,18 +50,20 @@ public class LogAspact {
 //        logger.info("class:{}#method:{} end#response:{}", className, methodName, result);
 //    }
 
-    @Around("execution(* manage.service.*.*(..))")//对controller层无法做环切？？
-    public Object collectRunStatics(ProceedingJoinPoint pjp) {
-        logger.info("{} invoke begin:{}", pjp.toLongString(), pjp.getArgs());
-        profile.start(pjp.toShortString());
-        Object result = null;
-        try {
-            result = pjp.proceed(pjp.getArgs());
-        } catch (Throwable throwable) {
-            throwable.printStackTrace();
-        }
-        profile.stop().print();
-        logger.info("{} invoke end:{}", pjp.toLongString(), result);
-        return result;
-    }
+
+    //// TODO: 4/25/17 和自定义的动态代理冲突
+//    @Around("execution(* manage.*.*.*(..))")//对controller层无法做环切？？
+//    public Object collectRunStatics(ProceedingJoinPoint pjp) {
+//        logger.info("{} invoke begin:{}", pjp.toLongString(), pjp.getArgs());
+//        profile.start(pjp.toShortString());
+//        Object result = null;
+//        try {
+//            result = pjp.proceed(pjp.getArgs());
+//        } catch (Throwable throwable) {
+//            throwable.printStackTrace();
+//        }
+//        profile.stop().print();
+//        logger.info("{} invoke end:{}", pjp.toLongString(), result);
+//        return result;
+//    }
 }

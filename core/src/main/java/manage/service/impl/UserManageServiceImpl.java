@@ -9,6 +9,8 @@ import manage.processor.CachEntity;
 import manage.processor.Processor;
 import manage.service.UserInfoService;
 import manage.service.UserManageService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.stereotype.Service;
 
@@ -21,10 +23,13 @@ import java.util.List;
  */
 @Service
 public class UserManageServiceImpl implements UserManageService {
+    private static final Logger logger = LoggerFactory.getLogger(UserManageService.class);
     @Resource
     private UserInfoMapper userInfoMapper;
     @Resource
     private BeanFactory beanFactory;
+    @Resource
+    private UserInfoServiceImpl userInfoService;
 
     //todo:获取key的方式不太优雅，考虑怎么优化
     public List<UserInfo> queryUserInfoA() {
@@ -41,8 +46,8 @@ public class UserManageServiceImpl implements UserManageService {
 
     //通过cglib动态代理实现缓存的注解处理器
     public List<UserInfo> queryUserInfoC() {
-        UserInfoService userInfoService = (UserInfoService) new ProxyCglib().createInstance(UserInfoServiceImpl.class);
-        return userInfoService.queryUserInfo();
+        UserInfoService userInfoServiceProxy = (UserInfoService) new ProxyCglib().createInstance(userInfoService, userInfoService.getClass());//由于userInfoService被Spring代理,所以userInfoService的class类型并不是UserInfoService;动态代理的时候会出现反射失败
+        return userInfoServiceProxy.queryUserInfo();
     }
 
 

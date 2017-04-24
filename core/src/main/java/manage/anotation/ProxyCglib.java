@@ -1,5 +1,6 @@
 package manage.anotation;
 
+import javafx.beans.property.adapter.ReadOnlyJavaBeanBooleanProperty;
 import manage.processor.CachEntity;
 import manage.processor.Processor;
 import net.sf.cglib.proxy.Callback;
@@ -12,26 +13,31 @@ import org.slf4j.LoggerFactory;
 import java.lang.reflect.Method;
 
 /**
- * TODO：要么空指针要么ClassCastException
+ * 要么空指针要么ClassCastException-----改下方法调用即可(method.invoke(object, objects))
  * Created by jinyan on 4/22/17.
  */
 public class ProxyCglib implements MethodInterceptor {
     private static Logger logger = LoggerFactory.getLogger(ProxyCglib.class);
 
-    public Object createInstance(Class clazz) {//为了使用spring实例化的类（保证类的依赖注入）
+    Object object;
+
+    public Object createInstance(Object object, Class clazz) {//为了使用spring实例化的类（保证类的依赖注入）
+        this.object = object;
         Enhancer enhancer = new Enhancer();
         enhancer.setSuperclass(clazz);//这里不能用代理过的类（从beanFactory中获取的实例是代理类）
         enhancer.setCallback(this);
         return enhancer.create();
     }
 
+    //o要求是EnhancerByCGLIB类型
     public Object intercept(Object o, Method method, Object[] objects, MethodProxy methodProxy) throws Throwable {
         if (method.getDeclaredAnnotation(Cach.class) != null &&
                 Processor.getCachedMap().get(method.getName()) != null) {
             logger.info("get data from cachMap");
             return Processor.getCachedMap().get(method.getName());
         } else {
-            Object result = methodProxy.invokeSuper(o, objects);//不能传入spring的bean实例，会出现ClassCastException
+            Object result = method.invoke(object, objects);
+//            Object result = methodProxy.invokeSuper(o, objects);//第一个参数要求时不能传入spring的bean实例，会出现ClassCastException
             Processor.getCachedMap().put(method.getName(), new CachEntity(result, 1000L, 1000L));
             return result;
         }

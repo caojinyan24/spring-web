@@ -15,6 +15,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
 /**
+ * 缓存处理
  * Created by jinyan on 4/22/17.
  */
 public class ProxyJdk implements InvocationHandler {
