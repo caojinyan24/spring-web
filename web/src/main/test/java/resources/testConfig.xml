@@ -11,6 +11,6 @@
     <import resource="classpath*:config/redis.xml"/>
     <import resource="classpath*:config/dao.xml"/>
     <import resource="classpath*:config/service.xml"/>
-    <context:component-scan base-package="manage.*.controller"/>
+    <context:component-scan base-package="manage.controller"/>
 
 </beans>

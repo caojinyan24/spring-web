@@ -26,7 +26,7 @@ import java.util.Map;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:resources/testConfig.xml")
 public class UserManageControllerTest {
-    @Autowired
+    @Resource
     UserManageController userManageController;
 
     @Before
