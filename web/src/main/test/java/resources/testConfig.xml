@@ -7,10 +7,10 @@
 
 
     <context:annotation-config/>
-    <context:property-placeholder location="classpath*:*.properties" ignore-unresolvable="true"/>
-    <import resource="classpath:config/redis.xml"/>
-    <import resource="classpath:config/dao.xml"/>
-    <import resource="classpath:config/service.xml"/>
-    <context:component-scan base-package="manage.anotation.* manage.processor.* manage.log.*"/>
+    <context:property-placeholder location="classpath*:db.properties" ignore-unresolvable="true"/>
+    <import resource="classpath*:config/redis.xml"/>
+    <import resource="classpath*:config/dao.xml"/>
+    <import resource="classpath*:config/service.xml"/>
+    <context:component-scan base-package="manage.*.controller"/>
 
 </beans>

@@ -45,8 +45,6 @@ public class UserManageController {
 
     @RequestMapping("/login")
     public String login(@RequestParam("userName") String userName, @RequestParam("password") String password, HttpServletRequest request, HttpServletResponse response) {
-        Profiler profiler = new Profiler("controller begin");
-        profiler.start("verifyAccount");
         if (accountService.vefifyAccount(userName, password)) {
             String sessionId = request.getRequestedSessionId();
             if (sessionId == null) {
@@ -55,32 +53,24 @@ public class UserManageController {
             MDC.put("login",sessionId);
             MDC.put("userName",userName);
             MDC.put("password",password);
-            profiler.start("save");
             Cookie cookie = new Cookie("sessionId", sessionId);
             response.addCookie(cookie);
             redisService.save(sessionId, userName);
             return "login";
         }
-        profiler.stop().print();
         MDC.clear();
         return "homePage";
     }
 
     @RequestMapping(value = "/query")
     public ModelAndView query(HttpServletRequest request) {
-        Profiler profiler = new Profiler("query");
         EventData data=new EventData();
         data.setEventDateTime(new Date());
-        data.setEventType("query");
         data.put("request",request.getRequestURL());
-        ProfilerRegistry profilerRegistry = ProfilerRegistry.getThreadContextInstance();
-        profiler.registerWith(profilerRegistry);
-        profiler.start("query");
         ModelAndView modelAndView = new ModelAndView("query");
         List<UserInfo> userInfos = userManageService.queryUserInfo();
         modelAndView.addObject("userInfos", userInfos);
         EventLogger.logEvent(data);
-        profiler.stop().print();
         return modelAndView;
     }
 

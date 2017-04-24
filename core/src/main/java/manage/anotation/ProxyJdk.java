@@ -33,7 +33,7 @@ public class ProxyJdk implements InvocationHandler {
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         if (method.getDeclaredAnnotationsByType(Cach.class) != null
                 && Processor.getCachedMap().get(method.getName()) != null) {
-            logger.info("get data from cachMap");
+            logger.debug("get data from cachMap");
             return Processor.getCachedMap().get(method.getName()).getValue();
         } else {
             Object result = method.invoke(object, args);
