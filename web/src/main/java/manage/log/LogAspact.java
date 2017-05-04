@@ -1,20 +1,16 @@
 package manage.log;
 
-import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.profiler.Profiler;
 import org.slf4j.profiler.ProfilerRegistry;
-import org.springframework.aop.aspectj.MethodInvocationProceedingJoinPoint;
+import org.springframework.core.env.SystemEnvironmentPropertySource;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
 
 
 /**
@@ -50,20 +46,19 @@ public class LogAspact {
 //        logger.info("class:{}#method:{} end#response:{}", className, methodName, result);
 //    }
 
-
-    //// TODO: 4/25/17 和自定义的动态代理冲突
-//    @Around("execution(* manage.*.*.*(..))")//对controller层无法做环切？？
-//    public Object collectRunStatics(ProceedingJoinPoint pjp) {
-//        logger.info("{} invoke begin:{}", pjp.toLongString(), pjp.getArgs());
-//        profile.start(pjp.toShortString());
-//        Object result = null;
-//        try {
-//            result = pjp.proceed(pjp.getArgs());
-//        } catch (Throwable throwable) {
-//            throwable.printStackTrace();
-//        }
-//        profile.stop().print();
-//        logger.info("{} invoke end:{}", pjp.toLongString(), result);
-//        return result;
-//    }
+    @Around("execution(* manage.*.*.*(..))")//对controller层无法做环切？？
+    public Object collectRunStatics(ProceedingJoinPoint pjp) {
+        logger.info("{} invoke begin:{}", pjp.toLongString(), pjp.getArgs());
+        System.out.println("test"+logger);
+        profile.start(pjp.toShortString());
+        Object result = null;
+        try {
+            result = pjp.proceed(pjp.getArgs());
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        }
+        profile.stop().print();
+        logger.info("{} invoke end:{}", pjp.toLongString(), result);
+        return result;
+    }
 }

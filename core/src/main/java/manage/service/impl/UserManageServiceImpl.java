@@ -29,7 +29,7 @@ public class UserManageServiceImpl implements UserManageService {
     @Resource
     private BeanFactory beanFactory;
     @Resource
-    private UserInfoServiceImpl userInfoService;
+    private UserInfoService userInfoService;
 
     //todo:获取key的方式不太优雅，考虑怎么优化
     public List<UserInfo> queryUserInfoA() {
@@ -62,11 +62,13 @@ public class UserManageServiceImpl implements UserManageService {
     }
 
     public List<UserInfo> queryUserInfo() {
-        return queryUserInfoJ();
+        return userInfoService.queryUserInfo();
     }
 
+    //查询操作使用了缓存,更新完成之后需要更新缓存
     public void updateUserInfo(UserInfo userInfo) {
         userInfoMapper.updateUserInfo(userInfo);
+        Processor.getCachedMap().clear();
     }
 
 

@@ -8,6 +8,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
 
+import static org.junit.Assert.*;
 
 /**
  * Created by jinyan on 4/24/17.
@@ -16,16 +17,12 @@ import javax.annotation.Resource;
 @ContextConfiguration(locations = "classpath:resources/testConfig.xml")
 public class UserManageServiceImplTest {
     @Resource
-    private UserManageServiceImpl userManageService;
+    private UserManageService userManageService;
 
     @Test
     public void testQueryUserInfo() {
-
         userManageService.queryUserInfo();
     }
 
-    @Test
-    public void testQueryUserInfoC() {
-        userManageService.queryUserInfoC();
-    }
+
 }

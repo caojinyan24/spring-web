@@ -45,3 +45,16 @@ https://docs.oracle.com/javase/7/docs/api/java/lang/reflect/Proxy.html
 为获取方法返回结果，通过切面的方式实现注解处理器
 对同一个方法使用AfterReturning切面注解，会导致其中一个注解不起作用
 使用实体包装Map中的value，保存添加时间，实现缓存的时间设置
+
+##kafka stream
+producer读入产生的日志文件(Profile)
+consumer保存用户id和浏览行为到数据库 (Properties文件定义相关接口和对应的行为,便于归纳整理)
+stream保存用户id,调用接口名称,调用时间(后续可根据时间梳理用户浏览习惯,保存在文件中)
++ Profiler [statics]
+|-- elapsed time [execution(RedisService.get(..))]     1.404 milliseconds.
+|-- elapsed time [execution(UserManageService.queryUserInfo())]     0.361 milliseconds.
+|-- elapsed time [execution(UserInfoService.queryUserInfo())]     0.811 milliseconds.
+|-- elapsed time [execution(UserInfoMapper.queryUserInfo())]   574.044 milliseconds.
+|-- Total                       [statics]  6525.988 milliseconds.
+
+

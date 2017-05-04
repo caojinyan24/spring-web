@@ -1,19 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <configuration scan="true" scanPeriod="2 seconds">
-    <!-- 控制台输出日志 -->
-    <turboFilter class="ch.qos.logback.classic.turbo.MarkerFilter">
-        <Marker>PROFILER</Marker>
-        <OnMatch>DENY</OnMatch>
-    </turboFilter>
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-        <layout class="ch.qos.logback.classic.PatternLayout">
+        <encoder>
             <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
-        </layout>
+        </encoder>
     </appender>
     <!-- 文件输出日志 (文件大小策略进行文件输出，超过指定大小对文件备份)-->
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <File>src/main/log/manage.log</File>
+        <File>/home/jinyan/Documents/project/github/spring-web/web/src/main/log/manage.log</File>
         <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
             <FileNamePattern>manage.log.%i.bak</FileNamePattern>
             <MinIndex>1</MinIndex>
@@ -22,13 +17,13 @@
         <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
             <MaxFileSize>100MB</MaxFileSize>
         </triggeringPolicy>
-        <layout class="ch.qos.logback.classic.PatternLayout">
+        <encoder>
             <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</Pattern>
-        </layout>
+        </encoder>
     </appender>
     <!-- 文件输出日志 (文件大小策略进行文件输出，超过指定大小对文件备份)-->
     <appender name="FILE1" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <File>src/main/log/manageSys.log</File>
+        <File>/home/jinyan/Documents/project/github/spring-web/web/src/main/log/manageSys.log</File>
         <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
             <FileNamePattern>manage.log.%i.bak</FileNamePattern>
             <MinIndex>1</MinIndex>
@@ -37,18 +32,19 @@
         <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
             <MaxFileSize>100MB</MaxFileSize>
         </triggeringPolicy>
-        <layout class="ch.qos.logback.classic.PatternLayout">
+        <encoder>
             <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</Pattern>
-        </layout>
+        </encoder>
     </appender>
-    <logger name="EventLogger">
-        <appender-ref ref="FILE1" level="INFO"/>
+
+
+    <logger name="EventLogger" level="DEBUG" additivity="true">
+        <appender-ref ref="FILE1"/>
     </logger>
-    <!--这里指定logger name 是为jmx设置日志级别做铺垫 -->
-    <logger name="manage.log.LogAspact" >
-        <appender-ref ref="FILE" level="DEBUG"/>
+    <logger name="manage.log.LogAspact" level="DEBUG" additivity="true">
+        <appender-ref ref="FILE"/>
     </logger>
-    <root>
-        <appender-ref ref="STDOUT" level="INFO"/>
+    <root level="DEBUG">
+        <appender-ref ref="STDOUT"/>
     </root>
 </configuration>
