@@ -52,13 +52,12 @@
             <groupId>org.dbunit</groupId>
             <artifactId>dbunit</artifactId>
             <type>jar</type>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.github.springtestdbunit</groupId>
             <artifactId>spring-test-dbunit</artifactId>
-            <scope>test</scope>
         </dependency>
+
 
         <dependency>
             <groupId>org.powermock</groupId>
@@ -107,7 +106,6 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
-            <scope>test</scope>
         </dependency>
 
         <dependency>
@@ -209,5 +207,25 @@
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
         </dependency>
+        <!--kafka-->
+        <!-- https://mvnrepository.com/artifact/org.apache.kafka/kafka_2.10 -->
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka_2.10</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka-clients</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka-streams</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>3.2.8.RELEASE</version>
+        </dependency>
+        <!--kafka-->
     </dependencies>
 </project>

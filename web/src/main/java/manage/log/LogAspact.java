@@ -1,5 +1,8 @@
 package manage.log;
 
+import kafka.entity.Consumer;
+import kafka.entity.MessageVo;
+import kafka.service.KafkaProducerService;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -11,6 +14,7 @@ import org.springframework.core.env.SystemEnvironmentPropertySource;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 
 
 /**
@@ -22,7 +26,8 @@ import javax.annotation.PostConstruct;
 public class LogAspact {
     private static final Logger logger = LoggerFactory.getLogger(LogAspact.class);
     Profiler profile;
-
+    @Resource
+    KafkaProducerService kafkaProducerService;
     @PostConstruct()
     public void setUp() {
         profile = new Profiler("statics");
@@ -45,7 +50,7 @@ public class LogAspact {
 //        String methodName = joinPoint.getSignature().getName();
 //        logger.info("class:{}#method:{} end#response:{}", className, methodName, result);
 //    }
-
+    //TODO:对controller层做切入,把profile日志用来统计controller层
     @Around("execution(* manage.*.*.*(..))")//对controller层无法做环切？？
     public Object collectRunStatics(ProceedingJoinPoint pjp) {
         logger.info("{} invoke begin:{}", pjp.toLongString(), pjp.getArgs());
@@ -57,7 +62,7 @@ public class LogAspact {
         } catch (Throwable throwable) {
             throwable.printStackTrace();
         }
-        profile.stop().print();
+        kafkaProducerService.sendMessage(new MessageVo(profile.stop().toString()));
         logger.info("{} invoke end:{}", pjp.toLongString(), result);
         return result;
     }
