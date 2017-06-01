@@ -3,6 +3,8 @@
 * 添加pom依赖包（无效）
 * 升级pom依赖包版本（无效）
 * 重新配置tomcat（错误消失，报另一个错误）
+
+* 另一个项目出现的同样的问题：应该打war包的，配置成了打jar包
 ##java.lang.IllegalStateException: ApplicationEventMulticaster not initialized
 * 注释掉无关代码之后不再报错
 
