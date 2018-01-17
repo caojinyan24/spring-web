@@ -14,11 +14,9 @@ import java.util.Properties;
  * Created by jinyan on 5/4/17.
  */
 public class Producer extends Thread {
-    private static Logger logger = LoggerFactory.getLogger(Producer.class);
     private static final KafkaProducer<String, String> producer;
-    private String topic;
-    private final String message;
     private static final Properties property = new Properties();
+    private static Logger logger = LoggerFactory.getLogger(Producer.class);
 
     static {
         try {
@@ -29,6 +27,9 @@ public class Producer extends Thread {
         producer = new KafkaProducer<String, String>(property);
 
     }
+
+    private final String message;
+    private String topic;
 
     public Producer(String message, Boolean isAsycn) {
         this.message = message;

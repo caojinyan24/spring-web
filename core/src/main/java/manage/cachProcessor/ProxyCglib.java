@@ -1,9 +1,7 @@
-package manage.anotation;
+package manage.cachProcessor;
 
-import javafx.beans.property.adapter.ReadOnlyJavaBeanBooleanProperty;
 import manage.processor.CachEntity;
 import manage.processor.Processor;
-import net.sf.cglib.proxy.Callback;
 import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.MethodInterceptor;
 import net.sf.cglib.proxy.MethodProxy;
@@ -13,7 +11,8 @@ import org.slf4j.LoggerFactory;
 import java.lang.reflect.Method;
 
 /**
- * 要么空指针要么ClassCastException-----改下方法调用即可(method.invoke(object, objects))
+ * 代理类,在调用被代理对象的时候,先检查是否存在缓存,存在的话直接返回缓存数据;否则调用被代理对象的方法
+ * 通过cglib实现代理
  * Created by jinyan on 4/22/17.
  */
 public class ProxyCglib implements MethodInterceptor {
@@ -29,7 +28,7 @@ public class ProxyCglib implements MethodInterceptor {
         return enhancer.create();
     }
 
-    //o要求是EnhancerByCGLIB类型
+    //要求是EnhancerByCGLIB类型
     public Object intercept(Object o, Method method, Object[] objects, MethodProxy methodProxy) throws Throwable {
         if (method.getDeclaredAnnotation(Cach.class) != null &&
                 Processor.getCachedMap().get(method.getName()) != null) {
@@ -50,5 +49,6 @@ public class ProxyCglib implements MethodInterceptor {
      * 再spring框架中涉及依赖注入的情况，需要再incercept中传入spring生成的bean实例，object将会是一个代理类的实例，导致设置callback类时出错，创建代理对象失败
      * Method threw 'java.lang.ClassCastException' exception. Cannot evaluate manage.service.impl.UserInfoServiceImpl$$EnhancerByCGLIB$$231ebdbf.toString()
      * invokeSuper中的o需要是被代理对象的一个实例（UserInfoServiceImpl），如果传入spring的bean实例，需要做class映射，如果spring使用了jdk代理，两个类是不能做映射的
+     * 要么空指针要么ClassCastException-----改下方法调用即可(method.invoke(object, objects))
      */
 }

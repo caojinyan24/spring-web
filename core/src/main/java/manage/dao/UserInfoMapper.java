@@ -1,6 +1,6 @@
 package manage.dao;
 
-import manage.anotation.Cach;
+import manage.cachProcessor.Cach;
 import manage.entity.UserInfo;
 import org.springframework.stereotype.Repository;
 

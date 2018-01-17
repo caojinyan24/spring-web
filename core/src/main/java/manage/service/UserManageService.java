@@ -2,7 +2,6 @@ package manage.service;
 
 
 import manage.entity.UserInfo;
-import org.slf4j.ext.EventData;
 
 import java.util.List;
 

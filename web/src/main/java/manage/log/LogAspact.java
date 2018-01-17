@@ -1,6 +1,5 @@
 package manage.log;
 
-import kafka.entity.Consumer;
 import kafka.entity.MessageVo;
 import kafka.service.KafkaProducerService;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -10,7 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.profiler.Profiler;
 import org.slf4j.profiler.ProfilerRegistry;
-import org.springframework.core.env.SystemEnvironmentPropertySource;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -28,6 +26,7 @@ public class LogAspact {
     Profiler profile;
     @Resource
     KafkaProducerService kafkaProducerService;
+
     @PostConstruct()
     public void setUp() {
         profile = new Profiler("statics");
@@ -35,8 +34,7 @@ public class LogAspact {
     }
 
 
-
-//    @Before("execution(* manage.*.*.*(..))")
+    //    @Before("execution(* manage.*.*.*(..))")
 //    public void logBefore(JoinPoint joinPoint) {
 //        String className = joinPoint.getTarget().getClass().getName();
 //        String methodName = joinPoint.getSignature().getName();
@@ -54,7 +52,7 @@ public class LogAspact {
     @Around("execution(* manage.*.*.*(..))")//对controller层无法做环切？？
     public Object collectRunStatics(ProceedingJoinPoint pjp) {
         logger.info("{} invoke begin:{}", pjp.toLongString(), pjp.getArgs());
-        System.out.println("test"+logger);
+        System.out.println("test" + logger);
         profile.start(pjp.toShortString());
         Object result = null;
         try {

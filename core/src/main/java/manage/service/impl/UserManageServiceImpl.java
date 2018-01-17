@@ -1,8 +1,8 @@
 package manage.service.impl;
 
 
-import manage.anotation.ProxyCglib;
-import manage.anotation.ProxyJdk;
+import manage.cachProcessor.ProxyCglib;
+import manage.cachProcessor.ProxyJdk;
 import manage.dao.UserInfoMapper;
 import manage.entity.UserInfo;
 import manage.processor.CachEntity;
@@ -31,14 +31,18 @@ public class UserManageServiceImpl implements UserManageService {
     @Resource
     private UserInfoService userInfoService;
 
-    //todo:获取key的方式不太优雅，考虑怎么优化
-    public List<UserInfo> queryUserInfoA() {
-        CachEntity cachEntity = Processor.getCachedMap().get("queryUserInfo1");
+    /**
+     * 手工做缓存处理
+     *
+     * @return
+     */
+    public List<UserInfo> queryUserInfoWithCach() {//对mapper的查询结果做缓存
+        CachEntity cachEntity = Processor.getCachedMap().get("queryUserInfo");
         if (null != cachEntity) {
             if ((new Date().getTime() - cachEntity.getTimestamp()) < cachEntity.getExpiredTime()) {
-                return (List<UserInfo>) Processor.getCachedMap().get("queryUserInfo1");
+                return (List<UserInfo>) Processor.getCachedMap().get("queryUserInfo");
             } else {
-                Processor.getCachedMap().remove("queryUserInfo1");
+                Processor.getCachedMap().remove("queryUserInfo");
             }
         }
         return userInfoMapper.queryUserInfo();

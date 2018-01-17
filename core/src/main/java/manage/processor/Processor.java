@@ -1,16 +1,11 @@
 package manage.processor;
 
-import com.google.common.collect.Maps;
-import org.springframework.stereotype.Component;
-
-import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by jinyancao on 2/6/17.
  */
-@Component
 public class Processor {
     /**
      * 持久层查询结果保存容器

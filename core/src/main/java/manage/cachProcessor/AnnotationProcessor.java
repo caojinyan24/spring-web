@@ -1,9 +1,8 @@
-package manage.anotation;
+package manage.cachProcessor;
 
 import manage.processor.CachEntity;
 import manage.processor.Processor;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
@@ -15,6 +14,7 @@ import java.lang.reflect.Method;
 import java.util.Arrays;
 
 /**
+ * 利用spring的aop实现的缓存注解
  * Created by jinyancao on 2/6/17.
  */
 @Aspect

@@ -1,7 +1,5 @@
 package manage.log;
 
-import org.slf4j.ext.EventData;
-
 /**
  * Created by jinyancao on 12/21/16.
  */

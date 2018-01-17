@@ -1,21 +1,17 @@
-package manage.anotation;
+package manage.cachProcessor;
 
-import manage.dao.UserInfoMapper;
 import manage.processor.CachEntity;
 import manage.processor.Processor;
-import net.sf.cglib.proxy.MethodInterceptor;
-import net.sf.cglib.proxy.MethodProxy;
-import net.sf.cglib.util.StringSwitcher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
 /**
- * 缓存处理
+ * 代理类,在调用被代理对象的时候,先检查是否存在缓存,存在的话直接返回缓存数据;否则调用被代理对象的方法
+ * 通过jdk实现代理
  * Created by jinyan on 4/22/17.
  */
 public class ProxyJdk implements InvocationHandler {

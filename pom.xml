@@ -291,15 +291,15 @@
     <build>
         <plugins>
             <!--<plugin>-->
-                <!--<groupId>org.apache.maven.plugins</groupId>-->
-                <!--<artifactId>maven-eclipse-plugin</artifactId>-->
-                <!--<configuration>-->
-                    <!--<projectNameTemplate>[artifactId]</projectNameTemplate>-->
-                    <!--<wtpmanifest>true</wtpmanifest>-->
-                    <!--<wtpapplicationxml>true</wtpapplicationxml>-->
-                    <!--<wtpversion>2.0</wtpversion>-->
-                    <!--<manifest>${basedir}/src/main/resources/META-INF/MANIFEST.MF</manifest>-->
-                <!--</configuration>-->
+            <!--<groupId>org.apache.maven.plugins</groupId>-->
+            <!--<artifactId>maven-eclipse-plugin</artifactId>-->
+            <!--<configuration>-->
+            <!--<projectNameTemplate>[artifactId]</projectNameTemplate>-->
+            <!--<wtpmanifest>true</wtpmanifest>-->
+            <!--<wtpapplicationxml>true</wtpapplicationxml>-->
+            <!--<wtpversion>2.0</wtpversion>-->
+            <!--<manifest>${basedir}/src/main/resources/META-INF/MANIFEST.MF</manifest>-->
+            <!--</configuration>-->
             <!--</plugin>-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

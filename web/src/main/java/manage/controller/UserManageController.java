@@ -7,8 +7,6 @@ import manage.service.UserManageService;
 import org.slf4j.MDC;
 import org.slf4j.ext.EventData;
 import org.slf4j.ext.EventLogger;
-import org.slf4j.profiler.Profiler;
-import org.slf4j.profiler.ProfilerRegistry;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,7 +20,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 
 /**
@@ -46,13 +43,14 @@ public class UserManageController {
     @RequestMapping("/login")
     public String login(@RequestParam("userName") String userName, @RequestParam("password") String password, HttpServletRequest request, HttpServletResponse response) {
         if (accountService.vefifyAccount(userName, password)) {
-            String sessionId = request.getRequestedSessionId();
-            if (sessionId == null) {
-                sessionId = UUID.randomUUID().toString();
-            }
-            MDC.put("login",sessionId);
-            MDC.put("userName",userName);
-            MDC.put("password",password);
+//            String sessionId = request.getRequestedSessionId();
+            String sessionId = request.getSession(true).getId();
+//            if (sessionId == null) {
+//                sessionId = UUID.randomUUID().toString();
+//            }
+            MDC.put("login", sessionId);
+            MDC.put("userName", userName);
+            MDC.put("password", password);
             Cookie cookie = new Cookie("sessionId", sessionId);
             response.addCookie(cookie);
             redisService.save(sessionId, userName);
@@ -64,9 +62,9 @@ public class UserManageController {
 
     @RequestMapping(value = "/query")
     public ModelAndView query(HttpServletRequest request) {
-        EventData data=new EventData();
+        EventData data = new EventData();
         data.setEventDateTime(new Date());
-        data.put("request",request.getRequestURL());
+        data.put("request", request.getRequestURL());
         ModelAndView modelAndView = new ModelAndView("query");
         List<UserInfo> userInfos = userManageService.queryUserInfo();
         modelAndView.addObject("userInfos", userInfos);

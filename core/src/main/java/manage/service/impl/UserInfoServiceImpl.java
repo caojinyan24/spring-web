@@ -1,6 +1,5 @@
 package manage.service.impl;
 
-import com.google.common.collect.Lists;
 import manage.dao.UserInfoMapper;
 import manage.entity.UserInfo;
 import manage.service.UserInfoService;

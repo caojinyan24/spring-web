@@ -2,7 +2,6 @@ package manage.service;
 
 import manage.entity.UserInfo;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -10,6 +9,6 @@ import java.util.List;
  */
 public interface UserInfoService {
 
-     List<UserInfo> queryUserInfo();
+    List<UserInfo> queryUserInfo();
 
 }

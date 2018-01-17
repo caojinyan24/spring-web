@@ -18,10 +18,6 @@ public class CachEntity {
      */
     Long expiredTime;
 
-    public boolean isInvalid() {
-        return System.currentTimeMillis() < timestamp + expiredTime;
-    }
-
     public CachEntity() {
     }
 
@@ -29,6 +25,10 @@ public class CachEntity {
         this.value = value;
         this.timestamp = timestamp;
         this.expiredTime = expiredTime;
+    }
+
+    public boolean isInvalid() {
+        return System.currentTimeMillis() < timestamp + expiredTime;
     }
 
     public Object getValue() {
